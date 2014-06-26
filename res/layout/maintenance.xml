@@ -35,7 +35,7 @@
             android:layout_height="match_parent" />
 
         <Button
-            android:id="@+id/btnT"
+            android:id="@+id/btnDELETE"
             android:layout_width="75dp"
             android:layout_height="50dp"
             android:layout_gravity="right"

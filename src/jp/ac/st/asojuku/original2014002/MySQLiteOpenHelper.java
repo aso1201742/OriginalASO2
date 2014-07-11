@@ -45,7 +45,7 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 		}
 	return;
     }
-    public SQLiteCursor selectRandomHitokoto(SQLiteDatabase db){
+    public SQLiteCursor selectHitokotoList(SQLiteDatabase db){
 
     	SQLiteCursor cursor = null;
 
@@ -64,6 +64,27 @@ public class MySQLiteOpenHelper extends SQLiteOpenHelper {
 
     		}
     	return cursor;
+    }
+    
+    public String selectRandomHitokoto(SQLiteDatabase db){
+    	
+    	String rtString = null;
+    	
+    	String sqlstr = "SELECT _id, phrase FROM Hitokoto ORDER BY RANDOM(); ";
+    		try {
+    			SQLiteCursor cursor = (SQLiteCursor)db.rawQuery(sqlstr, null);
+    			if(cursor.getCount()!=0){
+    				cursor.moveToFirst();
+    				rtString = cursor.getString(1);
+    			
+    			}
+    			cursor.close();
+    		} catch (SQLException e) {
+    			Log.e("ERROR", e.toString());
+    		}finally {
+    		
+    		}
+    		return rtString;
     }
 
     public void deleteHitokoto(SQLiteDatabase db, int id){
